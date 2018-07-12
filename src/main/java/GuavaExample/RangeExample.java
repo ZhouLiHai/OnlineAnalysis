@@ -12,10 +12,10 @@ public class RangeExample {
 
 	private void testRange() {
 		// jre10会出问题
-		// 换成jdk8 仍然出现同样的问题 TODO: run with error under jre10, fix it!
-		// Range<Integer> range1 = Range.closed(0,9);
+		// 换成jdk8 仍然出现同样的问题， maven的锅，在maven中配置jdk版本即可
+		Range<Integer> range1 = Range.closed(0,9);
 		System.out.println("[0,9]:");
-		//printRange(range1);
+		printRange(range1);
 	}
 
 	private void printRange(Range<Integer> range) {
