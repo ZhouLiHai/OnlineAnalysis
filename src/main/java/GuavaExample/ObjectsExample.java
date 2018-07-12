@@ -46,6 +46,12 @@ class Student {
 				&& Objects.equal(className, student.className);
 	}
 
+	@Override
+	public String toString() {
+		return "Student{" + "firstName='" + firstName + '\'' + ", lastName='" + lastName + '\'' + ", rollNo=" + rollNo
+				+ ", className='" + className + '\'' + '}';
+	}
+
 	public String getFirstName() {
 		return firstName;
 	}
