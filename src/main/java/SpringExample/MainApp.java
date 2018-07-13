@@ -1,9 +1,17 @@
 package SpringExample;
 
+import SpringExample.Beans.Driver;
 import SpringExample.Beans.LazyLoad;
 import SpringExample.Beans.Messenger;
+import SpringExample.Beans.RealConfig;
+import SpringExample.config.ConfigExample;
+import SpringExample.config.DependencyConfigExample;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import java.beans.Beans;
 
 public class MainApp {
 	public static void main(String[] args) {
@@ -27,7 +35,31 @@ public class MainApp {
 		// 生成
 		LazyLoad lazyLoad = (LazyLoad) context.getBean("lazyLoad");
 
+		System.out.println("==========");
+
+		// 这时driver的person属性已经被初始化好了
+		Driver driver = (Driver) context.getBean("driver");
+		driver.drive();
+
 		// 迫使spring调用bean销毁程序
 		((ClassPathXmlApplicationContext) context).registerShutdownHook();
+
+		System.out.println("==========");
+
+		ApplicationContext ctx = new AnnotationConfigApplicationContext(ConfigExample.class);
+
+		// 在这里如果使用jdk10会出现如下问题：
+		// An illegal reflective access operation has occurred
+		// jdk8中则没有这个问题
+		// "JDK 9 对于第一次反射都有警告，也许在下一些版本会对反射方面做出更好的优化和限制，现在请忽略警告"
+		// 应为java配置方式使用了注解，必然使用了反射，所以才会出现这个警告
+		// 这里使用java的配置方式和使用xml是一样的效果
+		RealConfig realConfig = (RealConfig) ctx.getBean("realConfig");
+		realConfig.printConfig();
+
+		// 使用注解方式的bean生成，driver存在类之间的依赖，如何处理请看DependencyConfigExample
+		ctx = new AnnotationConfigApplicationContext(DependencyConfigExample.class);
+		Driver driver_a = (Driver) ctx.getBean(Driver.class);
+		driver_a.drive();
 	}
 }

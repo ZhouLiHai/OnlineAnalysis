@@ -7,14 +7,24 @@
 
     <!--如果你有太多具有相同名称的初始化或者销毁方法的 Bean，那么你不需要在每一个 bean 上声明初始化方法和销毁方法。-->
     <!--框架使用元素中的 default-init-method 和 default-destroy-method 属性提供了灵活地配置这种情况-->
+    <!--这里的property默认的就是setter方式设置属性-->
+    <!--当容器调用一个无参的构造函数或一个无参的静态 factory 方法来初始化你的 bean 后，-->
+    <!--通过容器在你的 bean 上调用设值函数，基于设值函数的 DI 就完成了。-->
+    <bean id="messageTeamplate" abstract="true">
+        <property name="message" value="Hello world"></property>
+    </bean>
 
-    <bean id="messenger" class="SpringExample.Beans.Messenger">
-        <property name="message" value="Hello World!"/>
+    <bean id="messenger" class="SpringExample.Beans.Messenger" parent="messageTeamplate">
+        <!--这里继承了父类的属性就不需要给message填充值了-->
+        <!--可以在这里定义message，从而覆盖父类的值-->
     </bean>
 
     <!--prototype每次都会生成新的对象-->
     <bean id="person" class="SpringExample.Beans.Person" scope="prototype">
-
+        <property name="innerBean">
+            <!--使用内部类初始化参数，这个id只在内部有效-->
+            <bean id="innerBean" class="SpringExample.Beans.InnerBean"></bean>
+        </property>
     </bean>
 
     <!--即便不生成这个bean，init method也会被调用，因为bean默认是随容器加载的-->
@@ -28,5 +38,12 @@
     </bean>
 
     <bean class="SpringExample.Beans.InitPerson"></bean>
+
+    <!--基本类型可以参考后两个属性的配置-->
+    <bean id="driver" class="SpringExample.Beans.Driver">
+        <constructor-arg ref="person"></constructor-arg>
+        <constructor-arg type="int" value="100"></constructor-arg>
+        <constructor-arg type="java.lang.String" value="heavy"></constructor-arg>
+    </bean>
 
 </beans>
