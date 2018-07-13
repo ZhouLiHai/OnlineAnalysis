@@ -18,6 +18,8 @@ public class MainApp {
 		// 这里的classpath为“main/java”目录
 		// Spring 容器是 Spring 框架的核心。容器将创建对象，把它们连接在一起，配置它们，并管理他们的整个生命周期从创建到销毁。
 		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
+		//手动激活start时事件
+		((ClassPathXmlApplicationContext) context).start();
 		Messenger messenger = (Messenger)context.getBean("messenger");
 		System.out.println(messenger.getMessage());
 
@@ -41,6 +43,8 @@ public class MainApp {
 		Driver driver = (Driver) context.getBean("driver");
 		driver.drive();
 
+		// 手动激活stop事件
+		((ClassPathXmlApplicationContext) context).stop();
 		// 迫使spring调用bean销毁程序
 		((ClassPathXmlApplicationContext) context).registerShutdownHook();
 
@@ -61,5 +65,7 @@ public class MainApp {
 		ctx = new AnnotationConfigApplicationContext(DependencyConfigExample.class);
 		Driver driver_a = (Driver) ctx.getBean(Driver.class);
 		driver_a.drive();
+
+		((AnnotationConfigApplicationContext) ctx).registerShutdownHook();
 	}
 }

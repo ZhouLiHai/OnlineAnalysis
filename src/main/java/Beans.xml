@@ -46,4 +46,13 @@
         <constructor-arg type="java.lang.String" value="heavy"></constructor-arg>
     </bean>
 
+    <!--这里只需要定义一下即可，spring知道怎么用-->
+    <!--需要注意的是，这两个函数只针对beans.xml这个context起作用-->
+    <bean id="cStartEventHandler" class="SpringExample.EventExample.CStartEventHandler">
+
+    </bean>
+    <bean id="cStopEventHandler" class="SpringExample.EventExample.CStopEventHandler">
+
+    </bean>
+
 </beans>

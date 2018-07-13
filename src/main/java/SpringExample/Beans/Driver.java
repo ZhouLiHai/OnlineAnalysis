@@ -15,4 +15,12 @@ public class Driver {
 		System.out.println("No." + id + " is type of " + type + ".");
 		person.drive();
 	}
+
+	public void init() {
+		System.out.println("In Config init method.");
+	}
+
+	public void destroy() {
+		System.out.println("In Config destroy method.");
+	}
 }
