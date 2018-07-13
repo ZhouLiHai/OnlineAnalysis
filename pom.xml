@@ -13,6 +13,7 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
+                    <!--使用jdk的版本-->
                     <source>8</source>
                     <target>8</target>
                 </configuration>
@@ -20,19 +21,57 @@
         </plugins>
     </build>
 
+    <properties>
+        <!--这里定义一个变量-->
+        <jfree.version>1.5.0</jfree.version>
+    </properties>
     <dependencies>
         <!-- https://mvnrepository.com/artifact/org.jfree/jfreechart -->
         <dependency>
             <groupId>org.jfree</groupId>
             <artifactId>jfreechart</artifactId>
-            <version>1.5.0</version>
+            <!--在这里使用变量-->
+            <version>${jfree.version}</version>
         </dependency>
+
+        <!--当依赖一个本地包的时候可以这么做-->
+        <!--<dependency>-->
+            <!--<groupId>extDependency</groupId>-->
+            <!--<artifactId>extDependency</artifactId>-->
+            <!--<scope>system</scope>-->
+            <!--<version>1.0</version>-->
+            <!--<systemPath>${basedir}\war\WEB-INF\lib\extDependency.jar</systemPath>-->
+        <!--</dependency>-->
         <!-- https://mvnrepository.com/artifact/com.github.abel533/ECharts -->
         <dependency>
             <groupId>com.github.abel533</groupId>
             <artifactId>ECharts</artifactId>
             <version>3.0.0.4</version>
+            <!--maven默认的就是compile-->
+            <scope>compile</scope>
         </dependency>
+        <!--这里依赖一个dbunit，dbunit本身依赖与junit，但是跟我们使用的junit版本不一致-->
+        <!--现在需要屏蔽dbunit自带的junit模块-->
+        <!-- https://mvnrepository.com/artifact/org.dbunit/dbunit -->
+        <dependency>
+            <groupId>org.dbunit</groupId>
+            <artifactId>dbunit</artifactId>
+            <version>2.5.4</version>
+            <exclusions>
+                <!--屏蔽传递依赖-->
+                <exclusion>
+                    <artifactId>junit</artifactId>
+                    <groupId>junit</groupId>
+                </exclusion>
+            </exclusions>
+            <!--显然只有测试的时候需要使用这个包-->
+            <scope>test</scope>
+        </dependency>
+
+        <!--maven还提供provider和runtime两个scope-->
+        <!--provider表示在构建和测试的时候需要引用-->
+        <!--runtime表示在构建和测试的时候不需要，但在运行的时候需要-->
+        <!--另外system与provider相同，唯一的不同是system引用的是本地库-->
         <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
