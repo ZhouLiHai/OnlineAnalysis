@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <!--如果你有太多具有相同名称的初始化或者销毁方法的 Bean，那么你不需要在每一个 bean 上声明初始化方法和销毁方法。-->
+    <!--框架使用元素中的 default-init-method 和 default-destroy-method 属性提供了灵活地配置这种情况-->
+
+    <bean id="messenger" class="SpringExample.Beans.Messenger">
+        <property name="message" value="Hello World!"/>
+    </bean>
+
+    <!--prototype每次都会生成新的对象-->
+    <bean id="person" class="SpringExample.Beans.Person" scope="prototype">
+
+    </bean>
+
+    <!--即便不生成这个bean，init method也会被调用，因为bean默认是随容器加载的-->
+    <bean id="withInitDestoryMethon" class="SpringExample.Beans.WithInitDestoryMethon" init-method="init" destroy-method="destory">
+
+    </bean>
+
+    <!--设置懒加载，只有生成这个bean的时候才会初始化-->
+    <bean id="lazyLoad" class="SpringExample.Beans.LazyLoad" lazy-init="true" init-method="init">
+
+    </bean>
+
+    <bean class="SpringExample.Beans.InitPerson"></bean>
+
+</beans>
