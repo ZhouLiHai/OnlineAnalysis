@@ -75,6 +75,18 @@
         <property name="name" value="zhou"></property>
     </bean>
 
+    <!--这是第一次配置外部类，想起之前使用j2ee调用jdbc的时候，现在的自动配置还是很简单的-->
     <bean id="logging" class="SpringExample.aop.Logging"></bean>
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+        <property name="url" value="jdbc:mysql://localhost:3306/test"></property>
+        <property name="username" value="root"></property>
+        <property name="password" value="1"></property>
+    </bean>
+
+    <!--studentJDBCTemplate是我们主要用的类，他需要一个dataSource参数，这样一来想要更改dataSource也会非常方便-->
+    <bean id="studentJDBCTemplate" class="SpringExample.JDBCExample.StudentJDBCTemplate">
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
 
 </beans>

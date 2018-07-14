@@ -142,6 +142,28 @@
             <version>1.9.1</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/com.jpattern/jporm-jdbctemplate -->
+        <dependency>
+            <groupId>com.jpattern</groupId>
+            <artifactId>jporm-jdbctemplate</artifactId>
+            <version>5.3.0</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>5.0.7.RELEASE</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.11</version>
+        </dependency>
+
+
+
     </dependencies>
 
 
