@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+       http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop-3.0.xsd ">
 
     <!--如果你有太多具有相同名称的初始化或者销毁方法的 Bean，那么你不需要在每一个 bean 上声明初始化方法和销毁方法。-->
     <!--框架使用元素中的 default-init-method 和 default-destroy-method 属性提供了灵活地配置这种情况-->
@@ -48,11 +50,31 @@
 
     <!--这里只需要定义一下即可，spring知道怎么用-->
     <!--需要注意的是，这两个函数只针对beans.xml这个context起作用-->
-    <bean id="cStartEventHandler" class="SpringExample.EventExample.CStartEventHandler">
+    <bean id="cStartEventHandler" class="SpringExample.EventExample.CStartEventHandler"></bean>
+    <bean id="cStopEventHandler" class="SpringExample.EventExample.CStopEventHandler"></bean>
 
-    </bean>
-    <bean id="cStopEventHandler" class="SpringExample.EventExample.CStopEventHandler">
 
+    <!--aop配置-->
+    <aop:config>
+        <!--说明由哪个类执行监控-->
+        <aop:aspect id="log" ref="logging">
+            <!--说明选择哪些方法，它们的名字是selectAll-->
+            <aop:pointcut id="selectAll" expression="execution(* SpringExample.aop.Student*.*(..))"/>
+            <!--当这些方法被执行之前、之后分别执行什么函数-->
+            <aop:before pointcut-ref="selectAll" method="beforeAdvice"></aop:before>
+            <aop:after pointcut-ref="selectAll" method="afterAdvice"></aop:after>
+            <!--这是当有返回值、有异常抛出的函数执行时，执行什么函数-->
+            <aop:after-returning pointcut-ref="selectAll" returning="retVal" method="afterReturningAdvice"></aop:after-returning>
+            <aop:after-throwing pointcut-ref="selectAll" throwing="ex" method="AfterThrowingAdvice"></aop:after-throwing>
+        </aop:aspect>
+    </aop:config>
+
+    <!--正常的声明被监控对象和监控对象-->
+    <bean id="student" class="SpringExample.aop.Student">
+        <property name="age" value="21"></property>
+        <property name="name" value="zhou"></property>
     </bean>
+
+    <bean id="logging" class="SpringExample.aop.Logging"></bean>
 
 </beans>

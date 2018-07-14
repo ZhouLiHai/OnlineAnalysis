@@ -4,6 +4,7 @@ import SpringExample.Beans.Driver;
 import SpringExample.Beans.LazyLoad;
 import SpringExample.Beans.Messenger;
 import SpringExample.Beans.RealConfig;
+import SpringExample.aop.Student;
 import SpringExample.config.ConfigExample;
 import SpringExample.config.DependencyConfigExample;
 import org.springframework.context.ApplicationContext;
@@ -12,6 +13,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.beans.Beans;
+import java.util.concurrent.ExecutionException;
 
 public class MainApp {
 	public static void main(String[] args) {
@@ -26,6 +28,16 @@ public class MainApp {
 		// spring默认作用域是singleton，这里获取的是同一个对象
 		Messenger messenger_another = (Messenger)context.getBean("messenger");
 		System.out.println("same object: " + (messenger == messenger_another));
+
+		Student student = (Student)context.getBean("student");
+		student.getName();
+		student.getAge();
+		try {
+			student.printThrowException();
+		} catch (Exception e) {
+			// 什么都不需要做，这里就是演示一下对异常的监控
+		}
+
 
 		// 使用prototype作用于，每次生成的对象不同
 		System.out.println("same object: " +
