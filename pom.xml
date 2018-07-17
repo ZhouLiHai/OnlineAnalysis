@@ -188,6 +188,22 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/com.bladejava/blade-core -->
+        <dependency>
+            <groupId>com.bladejava</groupId>
+            <artifactId>blade-core</artifactId>
+            <version>1.7.0</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.bladejava/blade-mvc -->
+        <dependency>
+            <groupId>com.bladejava</groupId>
+            <artifactId>blade-mvc</artifactId>
+            <version>2.0.8.RELEASE</version>
+        </dependency>
+
+
 
 
     </dependencies>
