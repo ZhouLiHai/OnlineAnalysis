@@ -84,8 +84,11 @@
         <property name="password" value="1"></property>
     </bean>
 
+    <!--studentJDBCTemplate是我们主要用的类，他需要一个dataSource参数，这样一来想要更改dataSource也会非常方便-->
     <bean id="studentJDBCTemplate" class="SpringExample.JDBCExample.StudentJDBCTemplate">
         <property name="dataSource" ref="dataSource"></property>
     </bean>
+
+    <bean></bean>
 
 </beans>
