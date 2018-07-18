@@ -16,8 +16,6 @@ public class FactorialExample {
 		// BigInteger究竟有多大？ 看看232就知道了，我也不知道极限在哪里
 		System.out.println(FactorialByStreamsBig(21));
 		System.out.println(FactorialByStreamsBig(232));
-
-
 	}
 
 	public static long FactorialByStreams(int n) {
