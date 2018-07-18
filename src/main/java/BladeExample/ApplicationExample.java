@@ -1,11 +1,10 @@
 package BladeExample;
 
 import com.blade.Blade;
-import com.blade.mvc.handler.RouteHandler;
-import com.blade.mvc.http.Request;
-import com.blade.mvc.http.Response;
 
 public class ApplicationExample {
+
+	/*
 	public static void main(String[] args) {
 		Blade blade = Blade.me();
 
@@ -17,6 +16,13 @@ public class ApplicationExample {
 		});
 
 		// TODO: 怎么api老是变动啊，好好的用不行么？
-//		blade.start(ApplicationExample.class);
+		blade.start(ApplicationExample.class);
+	}
+	*/
+
+	public static void main(String[] args) {
+		Blade.me().get("/", (req, res) -> {
+			res.text("Hello Blade");
+		}).start(null);
 	}
 }

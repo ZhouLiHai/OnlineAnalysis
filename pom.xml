@@ -200,7 +200,16 @@
         <dependency>
             <groupId>com.bladejava</groupId>
             <artifactId>blade-mvc</artifactId>
-            <version>2.0.8.RELEASE</version>
+            <version>2.0.9.BETA2</version>
+
+            <!--blade与spring有包依赖冲突，blade另建项目吧-->
+            <exclusions>
+                <!--屏蔽传递依赖-->
+                <exclusion>
+                    <artifactId>org.apache.activemq</artifactId>
+                    <groupId>activemq-all</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
 
