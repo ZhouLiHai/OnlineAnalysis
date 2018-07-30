@@ -212,6 +212,12 @@
             </exclusions>
         </dependency>
 
+        <dependency>
+            <groupId>com.vip.vjtools</groupId>
+            <artifactId>vjkit</artifactId>
+            <version>1.0.1</version>
+        </dependency>
+
         <!-- https://mvnrepository.com/artifact/io.netty/netty-all -->
         <dependency>
             <groupId>io.netty</groupId>
