@@ -43,9 +43,9 @@ public class AllAssertExample {
 	@Test
 	public void assertSameArrayExample() {
 		// TODO: 能转换为list？
-		Range<Integer> range = Range.closed(1,10);
+		Range<Integer> range = Range.closed(1, 10);
 
-		Integer[] list = {1,2,3,4,5};
+		Integer[] list = {1, 2, 3, 4, 5};
 		Assertions.assertArrayEquals(list, list, "There are not same list.");
 	}
 

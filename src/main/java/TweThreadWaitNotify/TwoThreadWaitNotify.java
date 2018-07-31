@@ -15,13 +15,16 @@ public class TwoThreadWaitNotify {
         @Override
         public void run() {
             while (number.start < 100) {
+            	// 进入加锁区域
                 synchronized (TwoThreadWaitNotify.class) {
                     if(number.flag) {
-                        System.out.println("even" + number.start);
+                        System.out.println("even " + number.start);
                         number.start++;
+                        number.flag = !number.flag;
                         TwoThreadWaitNotify.class.notify();
                     }else {
                         try {
+                        	// 如果条件不满足，则选择临时释放锁，让其它线程进入枷锁区域（例如生产者）
                             TwoThreadWaitNotify.class.wait();
 
                         } catch (InterruptedException e) {
@@ -45,8 +48,9 @@ public class TwoThreadWaitNotify {
             while (number.start < 100) {
                 synchronized (TwoThreadWaitNotify.class) {
                     if (!number.flag) {
-                        System.out.println("odd " + number.start);
+                        System.out.println("odd  " + number.start);
                         number.start++;
+						number.flag = !number.flag;
                         TwoThreadWaitNotify.class.notify();
                     } else {
                         try {
