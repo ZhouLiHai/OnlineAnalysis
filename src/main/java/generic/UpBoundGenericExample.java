@@ -1,4 +1,4 @@
-package GenericExample;
+package generic;
 
 class UpBoundBox {
 	public <Q extends Number> void inspect(Q q) {
@@ -6,6 +6,9 @@ class UpBoundBox {
 	}
 }
 
+/**
+ * @author zhou
+ */
 public class UpBoundGenericExample {
 	public static void main(String[] args) {
 		UpBoundBox upBoundBox = new UpBoundBox();

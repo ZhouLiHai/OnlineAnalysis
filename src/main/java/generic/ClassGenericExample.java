@@ -1,4 +1,4 @@
-package GenericExample;
+package generic;
 
 class Box<T> {
 	private T obj;
@@ -20,6 +20,9 @@ class Box<T> {
 	}
 }
 
+/**
+ * @author zhou
+ */
 public class ClassGenericExample {
 	public static void main(String[] args) {
 		Box<String> box = new Box<>();

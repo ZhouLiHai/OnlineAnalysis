@@ -1,4 +1,4 @@
-package GenericExample;
+package generic;
 
 /**
  * 泛型除了可以定义泛型类还可以定义泛型方法
@@ -10,7 +10,10 @@ class StaticBox {
 	}
 }
 
-public class CGenericExample {
+/**
+ * @author zhou
+ */
+public class CheckGenericExample {
 	public static void main(String[] args) {
 		// 可以明确的告知泛型方法需要的类型
 		StaticBox.<String>profile("hello");

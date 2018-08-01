@@ -1,8 +1,11 @@
-package GenericExample;
+package generic;
 
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author zhou
+ */
 public class BasicGenericExample {
 
 	public static void main(String[] args) {
