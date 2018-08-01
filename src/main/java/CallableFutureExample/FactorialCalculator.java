@@ -23,7 +23,7 @@ public class FactorialCalculator implements Callable<Integer> {
         } else {
             for (int i = 2; i <= number; i++) {
                 result *= i;
-                TimeUnit.MILLISECONDS.sleep(1 * 1000);
+                TimeUnit.MILLISECONDS.sleep(10 * 1000);
             }
         }
 

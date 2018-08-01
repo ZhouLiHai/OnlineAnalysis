@@ -1,7 +1,5 @@
 package GenericExample;
 
-import org.omg.PortableInterceptor.INACTIVE;
-
 class numberBox<T extends Number> {
 	private T t;
 
@@ -18,9 +16,12 @@ class numberBox<T extends Number> {
 	}
 }
 
-class ingeterBox<Integer> extends numberBox<Number> {
-	public ingeterBox(Integer t) {
-		super(t);
+/**
+ * 在明确继承numberBox<Number>之后，就可以想main函数中写的那样使用了
+ */
+class integerBox <Integer> extends numberBox<Number> {
+	public integerBox(Integer t) {
+		super((Number) t);
 	}
 }
 
@@ -38,6 +39,6 @@ public class HeirGenericExample {
 		 * Tools.show(new numberBox<Integer>(100));
 		 * 原因是：虽然Integer是Number的子类，但是numberBox<Integer>并不是numberBox<Number>的子类
 		 */
-		Tools.show(new ingeterBox<Integer>(101));
+		Tools.show(new integerBox<Integer>(101));
 	}
 }
