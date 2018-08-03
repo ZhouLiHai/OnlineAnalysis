@@ -1,7 +1,5 @@
 package JavaPuzzlesExample;
 
-import CallableFutureExample.FactorialCalculator;
-
 import java.math.BigInteger;
 import java.util.stream.LongStream;
 

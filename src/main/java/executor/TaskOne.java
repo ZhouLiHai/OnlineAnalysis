@@ -1,11 +1,19 @@
-package ExecutorExample;
+package executor;
 
-import java.sql.Time;
-
+/**
+ * @author zhou
+ */
 public class TaskOne implements Runnable {
+	private String name;
+
+	public TaskOne(String name) {
+		this.name = name;
+	}
+
+	@Override
     public void run() {
         while (true) {
-            System.out.println("run task one.");
+            System.out.println("run task " + this.name);
 
             try {
                 Thread.sleep(1000);
