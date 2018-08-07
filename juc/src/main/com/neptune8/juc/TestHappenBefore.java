@@ -1,5 +1,6 @@
 package main.com.neptune8.juc;
 
+@SuppressWarnings("AlibabaAvoidManuallyCreateThread")
 public class TestHappenBefore {
 	private static volatile Integer something = 1;
 

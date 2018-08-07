@@ -10,7 +10,7 @@ public class TestCountDownLatch {
 
 	@SuppressWarnings("AlibabaAvoidManuallyCreateThread")
 	public static void main(String[] args) {
-		CountDownLatch countDownLatch = new CountDownLatch(10);
+		CountDownLatch countDownLatch = new CountDownLatch(THREAD_NUMBER);
 		LatchWorker latchWorker = new LatchWorker(countDownLatch);
 
 		long start = System.currentTimeMillis();
